@@ -36,45 +36,51 @@ class _IndexPageState extends State<IndexPage>
 
   @override
   Widget build(BuildContext context) {
-    List pages = [profilPage(context), categoriePage(), lieuPage()];
+    List pages = [
+      profilPage(context, setState: setState ), 
+      categoryPage(context, setState: setState), 
+      lieuPage(context, setState: setState)
+    ];
 
-    return Scaffold(
-      body: pages[pageIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        //============= mise en forme =============
-        iconSize: 30,
-        backgroundColor: Colors.transparent,
-        elevation: 35,
-        selectedItemColor: const Color(0xFF33BBC5),
-        unselectedItemColor: const Color(0xFF001B79),
-        selectedFontSize: 16,
-        unselectedFontSize: 14,
-        //=========================================
-        onTap: changePageIndex,
-        currentIndex: pageIndex,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.person_2_outlined),
+    return SafeArea(
+      child: Scaffold(
+        body: pages[pageIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          //============= mise en forme =============
+          iconSize: 30,
+          backgroundColor: Colors.transparent,
+          elevation: 35,
+          selectedItemColor: const Color(0xFF33BBC5),
+          unselectedItemColor: const Color(0xFF001B79),
+          selectedFontSize: 16,
+          unselectedFontSize: 14,
+          //=========================================
+          onTap: changePageIndex,
+          currentIndex: pageIndex,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Badge(
+                label: Text('2'),
+                child: Icon(Icons.person_2_outlined),
+              ),
+              label: 'Compte',
             ),
-            label: 'Compte',
-          ),
-          BottomNavigationBarItem(
-            icon: Badge(
-              label: Text('2'),
-              child: Icon(Icons.category),
+            BottomNavigationBarItem(
+              icon: Badge(
+                label: Text('2'),
+                child: Icon(Icons.category),
+              ),
+              label: 'Type lieu',
             ),
-            label: 'Type lieu',
-          ),
-          BottomNavigationBarItem(
-            icon: Badge(
-              label: Text('5'),
-              child: Icon(Icons.location_on),
+            BottomNavigationBarItem(
+              icon: Badge(
+                label: Text('5'),
+                child: Icon(Icons.location_on),
+              ),
+              label: 'Location',
             ),
-            label: 'Location',
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
