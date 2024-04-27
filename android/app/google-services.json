@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286654038416",
+    "project_id": "flutter-odc-pro-421613",
+    "storage_bucket": "flutter-odc-pro-421613.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286654038416:android:6416f2ac6b1ffeeb08f315",
+        "android_client_info": {
+          "package_name": "com.example.odc_pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoTEmp9d_FqSnEWlY99KxOqmBp8SP9IRM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
