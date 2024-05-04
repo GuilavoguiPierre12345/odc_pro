@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
-Widget InputFrom({required String titre,required String hin,required String nom,required String error}){
+Widget InputFrom({required String titre,required String hin,required String nom,required String error,required TextInputType keyBoard}){
   return FormBuilderTextField(
     
      validator: FormBuilderValidators.compose([
           FormBuilderValidators.required(errorText: error),
         ]),
-    name: nom,decoration: InputDecoration(
+    name: nom,
+    keyboardType: keyBoard,
+    decoration: InputDecoration(
       hintText: hin,
       floatingLabelStyle: TextStyle(fontSize: 30,color: Color(0xFF33BBC5)),
       hintStyle: TextStyle(color: Color(0xFF33BBC5)),

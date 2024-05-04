@@ -1,6 +1,9 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:getwidget/getwidget.dart';
@@ -20,6 +23,7 @@ class _LoginPageState extends State<LoginPage>
 
   final _formKey = GlobalKey<FormBuilderState>();
   bool isObscuredText = true;
+  late Map<String, dynamic> login;
   changeObscureTextState() {
     setState(() {
       isObscuredText = !isObscuredText;
@@ -45,7 +49,8 @@ class _LoginPageState extends State<LoginPage>
       decoration: const BoxDecoration(
           color: Colors.red,
           image: DecorationImage(
-              image: AssetImage("assets/images/bg.avif"), fit: BoxFit.cover)),
+              image: AssetImage("assets/images/image.jpeg"),
+              fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent.withOpacity(.6),
         body: Center(
@@ -57,7 +62,7 @@ class _LoginPageState extends State<LoginPage>
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: MediaQuery.of(context).size.width / 4,
-                  backgroundImage: const AssetImage("assets/images/bg.avif"),
+                  backgroundImage: const AssetImage("assets/images/user-1.jpg"),
                 ),
               ),
               Padding(
@@ -69,14 +74,14 @@ class _LoginPageState extends State<LoginPage>
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: FormBuilderTextField(
-                          name: 'identifiant',
+                          name: 'contact',
                           style: const TextStyle(
                               color: Colors.white, fontSize: 24),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                             prefixIcon: Icon(Icons.person),
                             prefixIconColor: Color(0xFF33BBC5),
-                            labelText: 'Your unique ID',
+                            labelText: 'Your contact',
                             labelStyle: TextStyle(
                                 color: Color(0xFF33BBC5),
                                 fontSize: 24,
@@ -125,11 +130,14 @@ class _LoginPageState extends State<LoginPage>
                           type: GFButtonType.outline,
                           onPressed: () {
                             if (_formKey.currentState!.saveAndValidate()) {
-                              // navigation sur la page profil
-                              Get.to(const IndexPage());
+                              login = _formKey.currentState!.value;
+
+                            connexion(
+                                contact: login['contact'],
+                                password: login['password']);
                             }
                           },
-                          color: Color(0xFF33BBC5),
+                          color: const Color(0xFF33BBC5),
                           child: const Text(
                             "Se connecter",
                             style: TextStyle(fontSize: 20),
@@ -146,4 +154,41 @@ class _LoginPageState extends State<LoginPage>
       ),
     );
   }
+}
+
+Future<void> connexion(
+  
+    {required String contact, required String password}) async {
+      // final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+      // if(connectivityResult.contains(ConnectivityResult.none)){
+              Get.defaultDialog(
+      title: "Connexion...",
+      barrierDismissible: true,
+      content: const Center(
+        child: CircularProgressIndicator(
+          color: Color(0xFF33BBC5),
+        ),
+      ));
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  CollectionReference admin = FirebaseFirestore.instance.collection('admin');
+  QuerySnapshot query = await admin
+      .where('contact', isEqualTo: contact)
+      .where('password', isEqualTo: password)
+      .get();
+
+  if (query.docs.isEmpty) {
+    Get.back();
+    Get.snackbar('Authentification', 'Identication incorrect',
+        backgroundColor: const Color(0xFF33BBC5),
+        colorText: Colors.white,
+        
+        duration: const Duration(seconds: 5));
+  } else {
+    Get.off(const IndexPage());
+    print(query.docs);
+  }
+      // }else{
+      //   Get.snackbar("Internet error", "INTERNET ERROR");
+      // }
+  
 }

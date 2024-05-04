@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:odc_pro/widgets/widget_pages/cagegorie_detail.dart';
 import 'package:odc_pro/widgets/widget_pages/detail_categorie_detail.dart';
 

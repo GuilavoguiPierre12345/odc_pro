@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:odc_pro/screens/login.dart';
-import 'package:odc_pro/widgets/widget_pages/cagegorie_detail.dart';
 import 'package:odc_pro/widgets/widget_pages/categorie_widget.dart';
-import 'package:odc_pro/widgets/widget_pages/detail_categorie_detail.dart';
 import 'package:odc_pro/widgets/widget_pages/feekback.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // await Geolocator.requestPermission(autmatic:trueo);
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -32,7 +32,7 @@ class _MyAppState extends State<MyApp>
       case 1:
         return FeekBack();
       case 2:
-        return Categorie_detail();
+        return LoginPage();
       default:
         return Text('Erreur');
     }
@@ -63,15 +63,15 @@ class _MyAppState extends State<MyApp>
               iconSize: 35,
               selectedFontSize: 24,
               unselectedFontSize: 22,
-              unselectedItemColor: Color(0xFF001B79),
-              selectedItemColor:Color(0xFF33BBC5) ,
+              unselectedItemColor: const Color(0xFF001B79),
+              selectedItemColor:const Color(0xFF33BBC5) ,
               currentIndex: currentPage,
               onTap: (value) {
                   setState(() {
                     currentPage=value;
                   });
               },
-              items: [
+              items: const [
               BottomNavigationBarItem(icon: Icon(Icons.home),label: 'Home'),
               BottomNavigationBarItem(icon: Icon(Icons.feedback),label: 'Feekback'),
               BottomNavigationBarItem(icon: Icon(Icons.person),label: 'Profil'),

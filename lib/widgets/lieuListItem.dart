@@ -7,7 +7,7 @@ Widget lieuListItem({required int index, required Function updateState}) {
     elevation: 7.0,
     child: Dismissible(
       onDismissed: (direction) {
-        Get.bottomSheet(addAdminBottomSheet(typeAction: "maj"));
+        // Get.bottomSheet(addAdminBottomSheet(typeAction: "maj"));
       },
       background: Container(
         color: Color(0xFF33BBC5),

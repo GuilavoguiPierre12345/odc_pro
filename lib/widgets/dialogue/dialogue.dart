@@ -1,16 +1,25 @@
 import 'package:flutter/material.dart';
 
-
-Widget create_dialogue(){
+Widget create_dialogue({required Map<String, dynamic>? user}) {
   return AlertDialog(
-                        title: Text("Feedback",style: TextStyle(fontWeight: FontWeight.bold,fontStyle: FontStyle.italic,fontSize: 30),),
-                        content: Container(
-                          height: 500,
-                          child: SingleChildScrollView(
-                            scrollDirection: Axis.vertical,
-                            child: Text("datasljmkdddddddddddddddddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdddddddddddddddddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdddddddddddddddddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdddddddddddddddddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkdddddddddddddddddqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqdatasljmkd",style: TextStyle(fontSize: 24),),
-                            ),
-                          ),
-                        
-                      );
+    icon: Icon(Icons.feedback,size: 50,),
+    contentPadding: EdgeInsets.all(0),
+    title: const Text(
+      "Feedback",
+      style:TextStyle(
+          fontWeight: FontWeight.bold,
+          fontStyle: FontStyle.italic,
+          fontSize: 30),
+    ),
+    content: SizedBox(
+      height: 400,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Text(
+          "${user!['contenu']}",
+          style: const TextStyle(fontSize: 24),
+        ),
+      ),
+    ),
+  );
 }

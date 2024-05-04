@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc_pro/main.dart';
-import 'package:odc_pro/widgets/widget_pages/categorie_widget.dart';
 import 'package:odc_pro/widgets/widget_pages/detail_categorie_detail.dart';
 
 class Categorie_detail extends StatefulWidget {
@@ -11,6 +9,7 @@ class Categorie_detail extends StatefulWidget {
   State<Categorie_detail> createState() => _Categorie_detailState();
 }
 
+// ignore: camel_case_types
 class _Categorie_detailState extends State<Categorie_detail>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
@@ -36,7 +35,7 @@ class _Categorie_detailState extends State<Categorie_detail>
         // }, icon: Icon(Icons.chevron_left,size: 40,))
       ),
       body: Container(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: GridView.count(
           crossAxisCount: 2,
           mainAxisSpacing: 8,
@@ -45,7 +44,7 @@ class _Categorie_detailState extends State<Categorie_detail>
           children: List.generate(10, (index){
             return GestureDetector(
               onTap: () {
-                Get.to(Detail_Categorie_detail());
+                Get.to(const Detail_Categorie_detail());
               },
               child: Container(
                     color: Colors.red,
