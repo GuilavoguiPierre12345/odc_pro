@@ -3,24 +3,29 @@ class LieuModel {
   String nomlieu;
   String ville;
   String quartier;
-  String contact1;
-  String contact2;
+  String contact_1;
+  String contact_2;
+  double? p_long;
+  double? p_lat;
+  List<Map<String, dynamic>> horaires;
 
   LieuModel(
-      { this.id,
+      {this.id,
       required this.nomlieu,
       required this.ville,
       required this.quartier,
-      required this.contact1,
-      required this.contact2});
+      required this.contact_1,
+      required this.contact_2,
+      required this.horaires});
 
   factory LieuModel.fromJson(Map<String, dynamic> json) {
     return LieuModel(
       nomlieu: json["nomlieu"] as String,
       ville: json["ville"] as String,
       quartier: json["quartier"] as String,
-      contact1: json["contact1"] as String,
-      contact2: json["contact2"] as String,
+      contact_1: json["contact_1"] as String,
+      contact_2: json["contact_2"] as String,
+      horaires: json["horaires"],
     );
   }
 

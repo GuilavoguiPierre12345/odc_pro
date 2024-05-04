@@ -11,12 +11,14 @@ Widget inputWidget(
       required String inputName,
       required String inputLabel,
       required String errorText,
+      String? keyboardType,
       IconData? prefixIcon
     }
     ) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: FormBuilderTextField(
+      keyboardType:keyboardType == "phone" ? TextInputType.phone : TextInputType.text,
       initialValue: typeAction != "add" ? defaultValue : "",
       name: inputName,
       obscureText: obs!,

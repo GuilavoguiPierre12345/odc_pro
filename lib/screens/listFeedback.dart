@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:odc_pro/screens/login.dart';
 import 'package:odc_pro/widgets/categories_card/cardFeekback.dart';
 
@@ -25,7 +24,7 @@ Widget listFeedBack(){
                 const Text('Liste des FeedBack',style: TextStyle(fontSize: 30,color: Colors.white,),textAlign: TextAlign.center,),
                 IconButton(
                       onPressed: () {
-                        Get.off(const LoginPage());
+                        Get.off(LoginPage());
                       },
                       icon: const Icon(Icons.logout),style: const ButtonStyle(iconSize:MaterialStatePropertyAll(40),),),
           ],

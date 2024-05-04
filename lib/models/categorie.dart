@@ -10,7 +10,7 @@ class CategorieModel {
     );
   }
 
-  // Map<String, dynamic> toJson() => {
-  //       "categorie": categorie,
-  //     };
+  Map<String, dynamic> toJson() => {
+        "categorie": categorie,
+  };
 }

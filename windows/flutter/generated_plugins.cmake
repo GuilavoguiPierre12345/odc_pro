@@ -4,7 +4,10 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   cloud_firestore
+<<<<<<< HEAD
   connectivity_plus
+=======
+>>>>>>> 6e5e299e1c00be32b6a2c85ccf21da26224ff42e
   firebase_core
   geolocator_windows
 )

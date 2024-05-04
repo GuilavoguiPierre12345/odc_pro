@@ -1,9 +1,6 @@
-import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import 'package:getwidget/getwidget.dart';
@@ -12,6 +9,7 @@ import 'package:odc_pro/screens/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -135,6 +133,8 @@ class _LoginPageState extends State<LoginPage>
                             connexion(
                                 contact: login['contact'],
                                 password: login['password']);
+                              // navigation sur la page profil
+                              Get.to(const IndexPage());
                             }
                           },
                           color: const Color(0xFF33BBC5),

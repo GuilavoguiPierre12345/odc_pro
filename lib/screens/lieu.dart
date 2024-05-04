@@ -1,11 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc_pro/widgets/bottomSheetContent.dart';
-import 'package:odc_pro/widgets/categoryListItem.dart';
+import 'package:odc_pro/screens/pagetest.dart';
+import 'package:odc_pro/services/lieu_service.dart';
+import 'package:odc_pro/widgets/customCircularProgress.dart';
 import 'package:odc_pro/widgets/lieuBottomSheet.dart';
 import 'package:odc_pro/widgets/lieuListItem.dart';
 
 Widget lieuPage(BuildContext context, {required Function setState}) {
+  setState(() {});
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -33,7 +36,10 @@ Widget lieuPage(BuildContext context, {required Function setState}) {
                     border: Border.all(color: Colors.white, width: 2.0)),
                 child: IconButton(
                     onPressed: () {
-                      Get.bottomSheet(lieuBottomSheet(typeAction: "add"));
+                      Get.to(() => PageTest(
+                            typeAction: "add",
+                          ));
+                      // Get.bottomSheet(lieuBottomSheet(typeAction: "add", context: context, setState: setState));
                     },
                     icon: const Icon(Icons.add)),
               ),
@@ -49,13 +55,27 @@ Widget lieuPage(BuildContext context, {required Function setState}) {
         ),
       ),
       Expanded(
-        child: ListView(
-          shrinkWrap: true,
-          children: List.generate(50, (index) {
-            return lieuListItem(index: index, updateState: setState);
-          }),
-        ),
-      )
+          child: FutureBuilder(
+              future: LieuService().allLocations(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return customCircularProgress();
+                } else if (snapshot.hasError) {
+                  return customCircularProgress();
+                } else {
+                  dynamic lieux = snapshot.data;
+
+                  return ListView(
+                    shrinkWrap: true,
+                    children: List.generate(snapshot.data!.length, (index) {
+                      return lieuListItem(
+                          index: index,
+                          updateState: setState,
+                          lieu: lieux[index]);
+                    }),
+                  );
+                }
+              }))
     ],
   );
 }

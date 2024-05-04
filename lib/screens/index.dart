@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:odc_pro/screens/categorie.dart';
 import 'package:odc_pro/screens/lieu.dart';
 import 'package:odc_pro/screens/listFeedback.dart';
 import 'package:odc_pro/screens/profil.dart';
 import 'package:odc_pro/widgets/bottomSheetContent.dart';
+
 
 class IndexPage extends StatefulWidget {
   const IndexPage({super.key});
@@ -22,7 +21,7 @@ class _IndexPageState extends State<IndexPage>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    _controller = AnimationController(vsync: this);    
   }
 
   @override
@@ -30,6 +29,7 @@ class _IndexPageState extends State<IndexPage>
     _controller.dispose();
     super.dispose();
   }
+
 
   int pageIndex = 0;
   changePageIndex(int newPageIndex) {
@@ -44,47 +44,16 @@ class _IndexPageState extends State<IndexPage>
       const ProfilPage(),
       listFeedBack(),
       categoryPage(context, setState: setState), 
-      lieuPage(context, setState: setState)
+      lieuPage(context, setState: setState),
+      // profilPage(context, setState: setState),
+      // categoryPage(context, setState: setState),
+      // lieuPage(context, setState: setState),
+      // const FeekBack()
     ];
     return SafeArea(
       child: Scaffold(
         body: pages[pageIndex],
-        // bottomNavigationBar: BottomNavigationBar(
-        //   //============= mise en forme =============
-        //   iconSize: 30,
-        //   backgroundColor: Colors.transparent,
-        //   elevation: 35,
-        //   selectedItemColor: const Color(0xFF33BBC5),
-        //   unselectedItemColor: const Color(0xFF001B79),
-        //   selectedFontSize: 16,
-        //   unselectedFontSize: 14,
-        //   //=========================================
-        //   onTap: changePageIndex,
-        //   currentIndex: pageIndex,
-        //   items: const [
-        //     BottomNavigationBarItem(
-        //       icon: Badge(
-        //         label: Text('2'),
-        //         child: Icon(Icons.person_2_outlined),
-        //       ),
-        //       label: 'Compte',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Badge(
-        //         label: Text('2'),
-        //         child: Icon(Icons.category),
-        //       ),
-        //       label: 'Type lieu',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Badge(
-        //         label: Text('5'),
-        //         child: Icon(Icons.location_on),
-        //       ),
-        //       label: 'Location',
-        //     ),
-        //   ],
-        // ),
+        
      floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         backgroundColor: const Color(0xFF33BBC5),
@@ -140,6 +109,7 @@ class _IndexPageState extends State<IndexPage>
               )
             ]
           ),
+          
         ),
       ),
      //fin du bloc
