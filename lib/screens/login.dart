@@ -1,5 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -159,8 +160,8 @@ class _LoginPageState extends State<LoginPage>
 Future<void> connexion(
   
     {required String contact, required String password}) async {
-      // final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
-      // if(connectivityResult.contains(ConnectivityResult.none)){
+      final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+      if(connectivityResult.contains(ConnectivityResult.none)){
               Get.defaultDialog(
       title: "Connexion...",
       barrierDismissible: true,
@@ -187,8 +188,8 @@ Future<void> connexion(
     Get.off(const IndexPage());
     print(query.docs);
   }
-      // }else{
-      //   Get.snackbar("Internet error", "INTERNET ERROR");
-      // }
+      }else{
+        Get.snackbar("Internet error", "INTERNET ERROR");
+      }
   
 }
