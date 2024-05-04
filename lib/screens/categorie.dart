@@ -1,11 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc_pro/widgets/adminListItem.dart';
-import 'package:odc_pro/widgets/bottomSheetContent.dart';
+import 'package:getwidget/getwidget.dart';
+import 'package:odc_pro/models/categorie.dart';
+import 'package:odc_pro/services/categorie_service.dart';
 import 'package:odc_pro/widgets/categoryBottomSheet.dart';
 import 'package:odc_pro/widgets/categoryListItem.dart';
+import 'package:odc_pro/widgets/customCircularProgress.dart';
 
 Widget categoryPage(BuildContext context, {required Function setState}) {
+  Future<CategorieModel> _categories;
+
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -55,13 +60,27 @@ Widget categoryPage(BuildContext context, {required Function setState}) {
         ),
       ),
       Expanded(
-        child: ListView(
-          shrinkWrap: true,
-          children: List.generate(50, (index) {
-            return categoryListItem(index: index, updateState: setState);
-          }),
-        ),
-      )
+          child: FutureBuilder(
+              future: CategorieService().allCategories(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return customCircularProgress();
+                } else if (snapshot.hasError) {
+                  return customCircularProgress();
+                } else {
+                  dynamic categories = snapshot.data;
+
+                  return ListView(
+                    shrinkWrap: true,
+                    children: List.generate(snapshot.data!.length, (index) {
+                      return categoryListItem(
+                          index: index,
+                          updateState: setState,
+                          categorie: categories[index]);
+                    }),
+                  );
+                }
+              }))
     ],
   );
 }

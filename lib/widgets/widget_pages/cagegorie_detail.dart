@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc_pro/main.dart';
-import 'package:odc_pro/widgets/widget_pages/categorie_widget.dart';
 import 'package:odc_pro/widgets/widget_pages/detail_categorie_detail.dart';
 
 class Categorie_detail extends StatefulWidget {

@@ -1,8 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:odc_pro/models/categorie.dart';
 import 'package:odc_pro/widgets/categoryBottomSheet.dart';
 
-Widget categoryListItem({required int index, required Function updateState}) {
+Widget categoryListItem(
+    {required int index,
+    required Function updateState,
+    required QueryDocumentSnapshot<Map<String, dynamic>> categorie}) {
   return Card.outlined(
     elevation: 7.0,
     child: Dismissible(
@@ -13,7 +18,8 @@ Widget categoryListItem({required int index, required Function updateState}) {
             backgroundColor: const Color(0xFF33BBC5),
             titlePadding: const EdgeInsets.only(top: 8.0),
             contentPadding: const EdgeInsets.all(0.0),
-            content: categoryBottomSheet(typeAction: "maj"));
+            content:
+                categoryBottomSheet(typeAction: "maj", categorie: categorie));
       },
       background: Container(
         color: const Color(0xFF33BBC5),
@@ -40,15 +46,10 @@ Widget categoryListItem({required int index, required Function updateState}) {
         ),
       ),
       key: Key("$index"),
-      child: const ListTile(
-        leading: CircleAvatar(
-          radius: 30,
-          backgroundImage: AssetImage("assets/images/bg.avif"),
-        ),
-        title: Text("Institut Technologies YabTech"),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [Text("Ecode de code")],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListTile(
+          title: Text(categorie["categorie"]),
         ),
       ),
     ),

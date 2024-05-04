@@ -1,11 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:odc_pro/models/categorie.dart';
 import 'package:odc_pro/screens/categorie.dart';
 import 'package:odc_pro/screens/lieu.dart';
 import 'package:odc_pro/screens/profil.dart';
+import 'package:odc_pro/widgets/widget_pages/feekback.dart';
 
 class IndexPage extends StatefulWidget {
-  const IndexPage({super.key});
+  IndexPage({super.key});
 
   @override
   State<IndexPage> createState() => _IndexPageState();
@@ -18,7 +20,7 @@ class _IndexPageState extends State<IndexPage>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this);
+    _controller = AnimationController(vsync: this);    
   }
 
   @override
@@ -26,6 +28,7 @@ class _IndexPageState extends State<IndexPage>
     _controller.dispose();
     super.dispose();
   }
+
 
   int pageIndex = 0;
   changePageIndex(int newPageIndex) {
@@ -37,9 +40,10 @@ class _IndexPageState extends State<IndexPage>
   @override
   Widget build(BuildContext context) {
     List pages = [
-      profilPage(context, setState: setState ), 
-      categoryPage(context, setState: setState), 
-      lieuPage(context, setState: setState)
+      profilPage(context, setState: setState),
+      categoryPage(context, setState: setState),
+      lieuPage(context, setState: setState),
+      const FeekBack()
     ];
 
     return SafeArea(
@@ -78,6 +82,13 @@ class _IndexPageState extends State<IndexPage>
                 child: Icon(Icons.location_on),
               ),
               label: 'Location',
+            ),
+            BottomNavigationBarItem(
+              icon: Badge(
+                label: Text('51'),
+                child: Icon(Icons.feedback),
+              ),
+              label: 'Feedbacks',
             ),
           ],
         ),

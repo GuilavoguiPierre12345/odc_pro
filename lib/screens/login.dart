@@ -1,5 +1,5 @@
-import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import 'package:odc_pro/screens/index.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
+
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -126,10 +127,10 @@ class _LoginPageState extends State<LoginPage>
                           onPressed: () {
                             if (_formKey.currentState!.saveAndValidate()) {
                               // navigation sur la page profil
-                              Get.to(const IndexPage());
+                              Get.to(IndexPage());
                             }
                           },
-                          color: Color(0xFF33BBC5),
+                          color: const Color(0xFF33BBC5),
                           child: const Text(
                             "Se connecter",
                             style: TextStyle(fontSize: 20),
