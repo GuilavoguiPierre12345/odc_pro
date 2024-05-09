@@ -1,19 +1,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<<<<<<< HEAD
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 <uses-permission android:name="com.google.android.providers.gsf.permission.WRITE_GSERVICES" />
 <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
-
-=======
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
->>>>>>> 6e5e299e1c00be32b6a2c85ccf21da26224ff42e
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>  
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
-        android:label="odc_pro"
+        android:label="SE-LO-APP"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

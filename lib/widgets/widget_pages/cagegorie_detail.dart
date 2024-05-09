@@ -13,7 +13,7 @@ class Categorie_detail extends StatefulWidget {
 class _Categorie_detailState extends State<Categorie_detail>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
+  Map<dynamic,dynamic> data={};
   @override
   void initState() {
     super.initState();
@@ -44,7 +44,7 @@ class _Categorie_detailState extends State<Categorie_detail>
           children: List.generate(10, (index){
             return GestureDetector(
               onTap: () {
-                Get.to(const Detail_Categorie_detail());
+                Get.to(Detail_Categorie_detail(dataAll: data,));
               },
               child: Container(
                     color: Colors.red,

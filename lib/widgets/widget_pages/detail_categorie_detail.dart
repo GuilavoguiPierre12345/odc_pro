@@ -5,10 +5,14 @@ import 'package:geodesy/geodesy.dart' as g;
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart' as k;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 
-// ignore: camel_case_types
+// ignore: camel_case_types, must_be_immutable
 class Detail_Categorie_detail extends StatefulWidget {
-  const Detail_Categorie_detail({super.key});
+  Detail_Categorie_detail({super.key,required this.dataAll});
+  Map<dynamic,dynamic> dataAll;
+
 
   @override
   State<Detail_Categorie_detail> createState() =>
@@ -46,6 +50,7 @@ void getCurrentLocation() async {
         desiredAccuracy: LocationAccuracy.high);
     setState(() {
       currentPosition = position;
+      
     });
     }
     
@@ -62,11 +67,28 @@ void getCurrentLocation() async {
       infoWindow: k.InfoWindow(
         title: cityName,
         snippet: 'Lat: ${position.latitude}, Long: ${position.longitude}',
-        
       ),
+      icon: k.BitmapDescriptor.defaultMarker,
+      
     ));
     setState(() {});
   }
+  
+  
+  static final Marker destination = Marker(markerId: k.MarkerId("Destination"),
+  infoWindow: k.InfoWindow(title: 'destination'),
+  icon: k.BitmapDescriptor.defaultMarkerWithHue(k.BitmapDescriptor.hueYellow),
+  position: k.LatLng(37.432962653311129, -127.08832357078792),
+  );
+
+  static final g.PolyLine polylines= g.PolyLine(
+    
+  );
+
+  // static final Marker currentP = Marker(markerId: k.MarkerId("Destination"),
+  // infoWindow: k.InfoWindow(title: 'destination'),
+  // icon: k.BitmapDescriptor.defaultMarkerWithHue(k.BitmapDescriptor.hueBlue),
+  // position: currentLocation!);
 
   final Completer<k.GoogleMapController> _controller = Completer();
   
@@ -84,25 +106,18 @@ void getCurrentLocation() async {
             child:currentPosition!=null? Column(
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height-250,
+                  height: MediaQuery.of(context).size.height/2,
                   child: k.GoogleMap(
                     initialCameraPosition: k.CameraPosition(target: k.LatLng(currentPosition!.latitude, currentPosition!.longitude),
                     zoom: 15,),
-                    markers: Set.from(markers),
+                    markers: {
+                      
+                      destination
+                    },
                     onTap: (currentPosition) {
                       addMarker(currentPosition);
                     },
-                    //  markers: {
-                    //       Marker(
-                    
-                    //         markerId: const MarkerId('currentPosition'),
-                    //         position: LatLng(currentPosition!.latitude, currentPosition!.longitude),
-                    //         infoWindow: InfoWindow(
-                    //           // title: cityName,
-                    //           snippet: 'Lat: ${currentPosition!.latitude}, Long: ${currentPosition!.longitude}',
-                    //         ),
-                    //       ),
-                    //     },
+                   
                     mapType: k.MapType.normal,
                     onMapCreated: (k.GoogleMapController controller) {
                       _controller.complete(controller);
@@ -110,56 +125,102 @@ void getCurrentLocation() async {
                     myLocationEnabled: true,
                     myLocationButtonEnabled: true,
                   ),
+                  
                 ),
                 const SizedBox(height: 10,
                 ),
-                Card(
-                  elevation: 6,
-                  shadowColor: const Color(0xFF33BBC5),
-                  child: RichText(
-                    textScaler: TextScaler.noScaling,
-                  textAlign: TextAlign.left,
-                  // overflow: TextOverflow.clip,
-                  text: TextSpan(
-                  children: [
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Card(
+                    elevation: 20,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Lieu:",style: TextStyle(fontSize: 30),),
+                            Text("faad food",style: TextStyle(fontSize: 28,color: Colors.red),),
+                          ],
+                        ),
+                        SizedBox(height: 20,),
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Categorie:",style: TextStyle(fontSize: 30),),
+                            Text("restaurant",style: TextStyle(fontSize: 28,color: Colors.red),),
+                          ],
+                        ),
+                         SizedBox(height: 20,),
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Contact:",style: TextStyle(fontSize: 30),),
+                            Text("621670812",style: TextStyle(fontSize: 28,color: Colors.red),),
+                          ],
+                        ),
+                         SizedBox(height: 20,),
+                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Distance:",style: TextStyle(fontSize: 30),),
+                            Text("1.5 km",style: TextStyle(fontSize: 28,color: Colors.red),),
+                          ],
+                        ),
                     
-                    const TextSpan(text: 'Categorie :',style: TextStyle(fontSize: 28,color: Colors.black45)),
-                    const TextSpan(text: 'Restaurant\n',style: TextStyle(color: Colors.red,fontSize: 25)),
-                    const TextSpan(text: 'Distance :',style: TextStyle(fontSize: 28,color: Colors.black45)),
-                    TextSpan(text: "${distance.toStringAsFixed(2)} km\n",style: const TextStyle(color: Colors.red,fontSize: 25)),
-                    const TextSpan(text: 'Contact :',style: TextStyle(fontSize: 28,color: Colors.black45)),
-                    const TextSpan(text: '621 67 08 12',style: TextStyle(color: Colors.red,fontSize: 25))
-                  ]
+                      ],
+                    ),
+                  ),
                 ),
                 
-                ),
-                ),
-                
-                ElevatedButton(onPressed: (){
-                  setState(() {
-                    calculateDistance();
-                  });
+                // ElevatedButton(onPressed: (){
+                //   setState(() {
+                //     calculateDistance();
+                //   });
                       
-                }, child:const Text("Dis")),
+                // }, child:const Text("Dis")),
               ],
             ):const Center(
                   child: CircularProgressIndicator(),
                 ),
           ),
         ),
-        // floatingActionButton: FloatingActionButton.extended(
-        //   onPressed: () {
-        //     // goToLake();
-        //   },
-        //   label: const Text("To the like!"),
-        //   icon: const Icon(Icons.directions_boat_outlined),
-        // ),
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            goToLake();
+          },
+          label: const Text("rotad"),
+          icon: const Icon(Icons.directions_boat_outlined),
+        ),
       ),
     );
   }
 
-  // Future<void> goToLake() async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(targetPosition));
-  // }
+  Future<void> goToLake() async {
+    final GoogleMapController controller = await _controller.future;
+    controller.animateCamera(CameraUpdate.newCameraPosition(currentPosition as k.CameraPosition));
+  }
 }
+
+
+
+// Card(
+//                   elevation: 6,
+//                   shadowColor: const Color(0xFF33BBC5),
+//                   child: RichText(
+//                     textScaler: TextScaler.noScaling,
+//                   textAlign: TextAlign.left,
+//                   // overflow: TextOverflow.clip,
+//                   text: TextSpan(
+//                   children: [
+                    
+//                     const TextSpan(text: 'Categorie :',style: TextStyle(fontSize: 28,color: Colors.black45)),
+//                     const TextSpan(text: 'Restaurant\n',style: TextStyle(color: Colors.red,fontSize: 25)),
+//                     const TextSpan(text: 'Distance :',style: TextStyle(fontSize: 28,color: Colors.black45)),
+//                     TextSpan(text: "${distance.toStringAsFixed(2)} km\n",style: const TextStyle(color: Colors.red,fontSize: 25)),
+//                     const TextSpan(text: 'Contact :',style: TextStyle(fontSize: 28,color: Colors.black45)),
+//                     const TextSpan(text: '621 67 08 12',style: TextStyle(color: Colors.red,fontSize: 25))
+//                   ]
+//                 ),
+                
+//                 ),
+//                 ),

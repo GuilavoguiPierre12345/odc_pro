@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:odc_pro/models/categorie.dart';
 import 'package:odc_pro/services/categorie_service.dart';
 import 'package:odc_pro/widgets/categoryBottomSheet.dart';

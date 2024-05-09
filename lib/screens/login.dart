@@ -135,7 +135,7 @@ class _LoginPageState extends State<LoginPage>
                                 contact: login['contact'],
                                 password: login['password']);
                               // navigation sur la page profil
-                              Get.to(const IndexPage());
+                              // Get.to(const IndexPage());
                             }
                           },
                           color: const Color(0xFF33BBC5),
@@ -160,8 +160,8 @@ class _LoginPageState extends State<LoginPage>
 Future<void> connexion(
   
     {required String contact, required String password}) async {
-      final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
-      if(connectivityResult.contains(ConnectivityResult.none)){
+      // final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+      // if(connectivityResult.contains(ConnectivityResult.none)){
               Get.defaultDialog(
       title: "Connexion...",
       barrierDismissible: true,
@@ -188,8 +188,8 @@ Future<void> connexion(
     Get.off(const IndexPage());
     print(query.docs);
   }
-      }else{
-        Get.snackbar("Internet error", "INTERNET ERROR");
-      }
+      // }else{
+      //   Get.snackbar("Internet error", "INTERNET ERROR");
+      // }
   
 }

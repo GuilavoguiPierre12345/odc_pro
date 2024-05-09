@@ -13,7 +13,7 @@ Widget categoryBottomSheet(
   final formKey = GlobalKey<FormBuilderState>();
 
   return Container(
-      height: 170,
+      height: 100,
       decoration: const BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.only(
