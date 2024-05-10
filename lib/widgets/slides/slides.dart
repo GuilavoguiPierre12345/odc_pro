@@ -20,7 +20,7 @@ class _SlidesPageState extends State<SlidesPage> {
   void initState() {
     _pageController = PageController(initialPage: 0);
     slideInitIndex = _pageController.initialPage;
-    
+
     super.initState();
   }
 
@@ -66,7 +66,7 @@ class _SlidesPageState extends State<SlidesPage> {
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.all(16),
           color: Colors.orange,
-          image: const AssetImage('assets/images/bg.avif'),
+          image: const AssetImage('assets/images/splash-1.jpg'),
           boxFit: BoxFit.cover,
           colorFilter:
               ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.darken),
@@ -84,14 +84,14 @@ class _SlidesPageState extends State<SlidesPage> {
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.none,
-                            fontSize: 18)),
+                            fontSize: 34)),
                     TextSpan(
                         text: ' SE-LO APP',
                         style: TextStyle(
-                            color: Color(0xFF33BBC5),
+                            color: Color.fromARGB(255, 34, 45, 172),
                             fontWeight: FontWeight.bold,
                             decoration: TextDecoration.none,
-                            fontSize: 28)),
+                            fontSize: 34)),
                   ]),
                 ),
                 const Text(
@@ -113,7 +113,56 @@ class _SlidesPageState extends State<SlidesPage> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(0),
             image: DecorationImage(
-              image: AssetImage('assets/images/bg.avif'),
+              image: AssetImage('assets/images/splash-2.jpg'),
+              fit: BoxFit.cover,
+              colorFilter: ColorFilter.mode(
+                  Colors.black.withOpacity(0.2), BlendMode.darken),
+            )),
+        child: Padding(
+          padding: EdgeInsets.only(top: 70.0, left: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RichText(
+                text: const TextSpan(children: [
+                  TextSpan(
+                      text: ' SE-LO APP ',
+                      style: TextStyle(
+                          color: Color(0xFF33BBC5),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none,
+                          fontSize: 24)),
+                  TextSpan(
+                      text: ' VOTRE GUIDE PARFAIT ',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none,
+                          fontSize: 24)),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  "La GUINEE est pleine de merveille, alors laissez vous guider par SE-LO APP",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      decoration: TextDecoration.none,
+                      fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(0),
+            image: DecorationImage(
+              image: AssetImage('assets/images/splash-3.jpg'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.2), BlendMode.darken),
@@ -125,23 +174,48 @@ class _SlidesPageState extends State<SlidesPage> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(0),
             image: DecorationImage(
-              image: AssetImage('assets/images/bg.avif'),
+              image: AssetImage('assets/images/splash-4.avif'),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.2), BlendMode.darken),
             )),
-      ),
-      Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(0),
-            image: DecorationImage(
-              image: AssetImage('assets/images/bg.avif'),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.2), BlendMode.darken),
-            )),
+        child: Padding(
+          padding: EdgeInsets.only(top: 70.0, left: 20),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              RichText(
+                text: const TextSpan(children: [
+                  TextSpan(
+                      text: ' AVEC ',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none,
+                          fontSize: 28)),
+                  TextSpan(
+                      text: ' SE-LO APP',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 34, 45, 172),
+                          fontWeight: FontWeight.bold,
+                          decoration: TextDecoration.none,
+                          fontSize: 28)),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const Text(
+                  "Explorons ensemble notre PARADIS la GUINEE",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Colors.white,
+                      decoration: TextDecoration.none,
+                      fontSize: 16),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     ];
     return slideList;

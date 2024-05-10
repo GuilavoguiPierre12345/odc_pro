@@ -10,8 +10,8 @@ class LieuService {
     await FirebaseFirestore.instance.collection("lieu").add(lieuRealInfo);
   }
 
-  Future<void> updateLieu(
-      String docId, Map<String, dynamic> newlieu,Map<String, dynamic> positionInfo) async {
+  Future<void> updateLieu(String docId, Map<String, dynamic> newlieu,
+      Map<String, dynamic> positionInfo) async {
     await FirebaseFirestore.instance
         .collection("lieu")
         .doc(docId)
@@ -35,6 +35,21 @@ class LieuService {
     }
   }
 
-  
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      lieuParCategorie(String catId) async {
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> queryDocuments = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance.collection("lieu").where("category", isEqualTo: catId).get();
+
+      for (var doc in querySnapshot.docs) {
+        queryDocuments.add(doc);
+      }
+      return queryDocuments; 
+    } catch (e) {
+      print("Erreur de recuperation des lieux : $e");
+      return []; // ou une autre action en cas d'erreur
+    }
+  }
 
 }

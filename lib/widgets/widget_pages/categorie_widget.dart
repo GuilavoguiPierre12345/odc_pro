@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:getwidget/getwidget.dart';
 import 'package:odc_pro/services/categorie_service.dart';
 import 'package:odc_pro/services/lieu_par_categorie.dart';
 import 'package:odc_pro/widgets/categories_card/cat.dart';
+import 'package:odc_pro/widgets/customCarousel.dart';
 import 'package:odc_pro/widgets/customCircularProgress.dart';
 
 class Categorie_Widget extends StatefulWidget {
@@ -31,37 +34,68 @@ class _Cagorie_WidgetState extends State<Categorie_Widget>
 
   @override
   Widget build(BuildContext context) {
+    final List<String> imageList = [
+      "assets/images/carousel-1.avif",
+      "assets/images/carousel-2.avif",
+      "assets/images/carousel-3.avif",
+      "assets/images/carousel-4.avif",
+      "assets/images/carousel-5.avif",
+    ];
     return Container(
-      padding: EdgeInsets.all(4),
+      padding: EdgeInsets.all(0),
       child: Column(
         children: [
           Container(
-            width: double.infinity,
-            height: 150,
-            decoration: const BoxDecoration(
+              width: MediaQuery.of(context).size.width,
+              height: 200,
+              decoration: const BoxDecoration(
                 color: Color(0xFF33BBC5),
-                borderRadius: BorderRadius.all(Radius.circular(20))),
-          ),
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.asset(
+                    "assets/images/carousel-5.avif",
+                    fit: BoxFit.cover,
+                  ),
+                  Positioned(
+                    bottom: 0,
+                    left: 42,
+                    child: Text(
+                      "SE-LO APP",
+                      style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF33BBC5)),
+                    ),
+                  )
+                ],
+              )
+              // child: customCarousel(setState: setState, context: context),
+              ),
           Expanded(
               child: FutureBuilder(
-                  future: CategorieService().allCategories(),
+                  future: LieuParCategorie().lieuParCategorie(),
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return customCircularProgress();
                     } else if (snapshot.hasError) {
                       return customCircularProgress();
                     } else {
-                      List<QueryDocumentSnapshot<Map<String, dynamic>>>? categorie = snapshot.data;
+                      List<Map<String, dynamic>> lieuCat = snapshot.data ?? [];
+                      List cat = [];
+
                       return SingleChildScrollView(
                         child: Column(
-                          children: List.generate(
-                            snapshot.data!.length,
-                            (index) => create_categories(
-                                lieuList: LieuParCategorie().lieuParCategorie(categorie![index].id),
-                                context: context,
-                                cat: categorie[index]["categorie"]),
-                          ),
-                        ),
+                            children: List.generate(
+                                lieuCat.length,
+                                (index) => create_categories(
+                                    lieu: lieuCat[index]["lieu"],
+                                    context: context,
+                                    catObject: lieuCat[index]["categorie"],
+                                    cat: lieuCat[index]["categorie"]
+                                        ["categorie"]))),
                       );
                     }
                   }))

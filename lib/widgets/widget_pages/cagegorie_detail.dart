@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:odc_pro/services/lieu_service.dart';
+import 'package:odc_pro/widgets/customCircularProgress.dart';
 import 'package:odc_pro/widgets/widget_pages/detail_categorie_detail.dart';
 
 class Categorie_detail extends StatefulWidget {
-  const Categorie_detail({super.key});
+  Categorie_detail({super.key, required this.categorie, required this.lieu});
+  dynamic categorie;
+  Map<String, dynamic> lieu;
 
   @override
   State<Categorie_detail> createState() => _Categorie_detailState();
@@ -13,7 +18,7 @@ class Categorie_detail extends StatefulWidget {
 class _Categorie_detailState extends State<Categorie_detail>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  Map<dynamic,dynamic> data={};
+  Map<dynamic, dynamic> data = {};
   @override
   void initState() {
     super.initState();
@@ -29,32 +34,84 @@ class _Categorie_detailState extends State<Categorie_detail>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        // leading: IconButton(onPressed: (){
-        //   Get.to(MyApp());
-        // }, icon: Icon(Icons.chevron_left,size: 40,))
-      ),
-      body: Container(
-        padding: const EdgeInsets.all(10),
-        child: GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 8,
-          crossAxisSpacing: 8,
-          scrollDirection: Axis.vertical,
-          children: List.generate(10, (index){
-            return GestureDetector(
-              onTap: () {
-                Get.to(Detail_Categorie_detail(dataAll: data,));
-              },
-              child: Container(
-                    color: Colors.red,
-              ),
-            );
-          }),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Categorie : ${widget.categorie['categorie']}",
+              style: TextStyle(
+                  fontSize: 24, color: Color.fromARGB(255, 34, 45, 172))),
         ),
-      )
-      
-        
-    );
+        body: Container(
+          padding: const EdgeInsets.all(10),
+          child: FutureBuilder(
+              future: LieuService().lieuParCategorie(widget.categorie.id),
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  customCircularProgress();
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  customCircularProgress();
+                }
+                dynamic sdata = snapshot.data;
+                if (snapshot.hasData) {
+                  return GridView.count(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    scrollDirection: Axis.vertical,
+                    children: List.generate(sdata.length, (index) {
+                      return GestureDetector(
+                          onTap: () {
+                            Get.to(Detail_Categorie_detail(
+                              dataAll: widget.lieu,categorie: widget.categorie["categorie"],
+                            ));
+                          },
+                          child: Container(
+                              alignment: Alignment.bottomLeft,
+                              margin:
+                                  const EdgeInsets.only(right: 5, bottom: 10),
+                              width: MediaQuery.sizeOf(context).width / 2 + 30,
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          "assets/images/carousel-${index + 1}.avif"),
+                                      fit: BoxFit.cover,
+                                      opacity: .5),
+                                  color: const Color.fromARGB(181, 51, 187, 197)
+                                      .withOpacity(.8),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(5))),
+                              child: Container(
+                                alignment: Alignment.bottomLeft,
+                                height: 70,
+                                padding: const EdgeInsets.only(left: 7),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(.4),
+                                    borderRadius: const BorderRadius.only(
+                                        bottomRight: Radius.circular(10),
+                                        bottomLeft: Radius.circular(10))),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      sdata[index]["nomLieu"],
+                                      style: const TextStyle(
+                                          fontSize: 18, color: Colors.white),
+                                    ),
+                                    Text(
+                                      sdata[index]["ville"],
+                                      style: const TextStyle(
+                                          fontSize: 18, color: Colors.white),
+                                    )
+                                  ],
+                                ),
+                              )));
+                    }),
+                  );
+                }
+                return Center(child: Text("LIST N/A"));
+              }),
+        ));
   }
 }
