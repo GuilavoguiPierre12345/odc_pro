@@ -51,7 +51,7 @@ Widget create_categories(
                       children: List.generate(snapshot.data!.length, (index) {
                         return GestureDetector(
                           onTap: () {
-                            Get.to(const Detail_Categorie_detail());
+                            Get.to( Detail_Categorie_detail());
                           },
                           child: Container(
                               alignment: Alignment.bottomLeft,
