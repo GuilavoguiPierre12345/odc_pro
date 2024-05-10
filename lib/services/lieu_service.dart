@@ -34,4 +34,7 @@ class LieuService {
       return []; // ou une autre action en cas d'erreur
     }
   }
+
+  
+
 }

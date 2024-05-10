@@ -20,7 +20,7 @@ class _SlidesPageState extends State<SlidesPage> {
   void initState() {
     _pageController = PageController(initialPage: 0);
     slideInitIndex = _pageController.initialPage;
-
+    
     super.initState();
   }
 
