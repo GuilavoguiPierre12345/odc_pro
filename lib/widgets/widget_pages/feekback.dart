@@ -55,7 +55,7 @@ class _FeekBackState extends State<FeekBack>
               child: Column(
                 children: [
                   InputFrom(
-                      titre: 'subjet',
+                      titre: 'sujet',
                       keyBoard: TextInputType.text,
                       hin: 'votre sujet',
                       nom: 'sujet',

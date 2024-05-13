@@ -3,8 +3,11 @@ import 'package:get/get.dart';
 import 'package:odc_pro/screens/categorie.dart';
 import 'package:odc_pro/screens/lieu.dart';
 import 'package:odc_pro/screens/listFeedback.dart';
+import 'package:odc_pro/screens/pagetest.dart';
 import 'package:odc_pro/screens/profil.dart';
 import 'package:odc_pro/widgets/bottomSheetContent.dart';
+import 'package:odc_pro/widgets/categoryBottomSheet.dart';
+
 
 
 class IndexPage extends StatefulWidget {
@@ -59,7 +62,24 @@ class _IndexPageState extends State<IndexPage>
         backgroundColor: const Color(0xFF33BBC5),
         child: const Icon(Icons.add),
         onPressed: () {
-                Get.bottomSheet(AdminBottonSheet(typeAction: "add"));
+          setState(() {
+              if(pageIndex==0){
+                  Get.bottomSheet(AdminBottonSheet(typeAction: "add"));
+              }else if(pageIndex==2){
+                 Get.defaultDialog(
+                          title: "Ajouter categorie",
+                          titleStyle: TextStyle(color: Colors.white),
+                          backgroundColor: const Color(0xFF33BBC5),
+                          titlePadding: const EdgeInsets.only(top: 8.0),
+                          contentPadding: const EdgeInsets.all(0.0),
+                          content: categoryBottomSheet(typeAction: "add"));
+              }else if(pageIndex==3){
+                 Get.to(() => PageTest(
+                            typeAction: "add",
+                          ));
+              }
+          });
+                
         }
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

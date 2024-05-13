@@ -71,8 +71,9 @@ Widget adminListItem({required Map<String,dynamic> user,required String index}) 
       key: Key("$user"),
       child: ListTile(
         leading: const CircleAvatar(
-          radius: 30,
-          backgroundImage: AssetImage("assets/images/image.jpeg"),
+          radius: 40,
+          backgroundColor: Color.fromARGB(31, 103, 101, 101),
+          child: Icon(Icons.person,size: 45,),
         ),
         title: Text("${user['nomcomplet']}"),
         subtitle: Column(

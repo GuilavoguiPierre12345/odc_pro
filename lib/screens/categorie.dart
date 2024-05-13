@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:odc_pro/models/categorie.dart';
+import 'package:odc_pro/screens/login.dart';
 import 'package:odc_pro/services/categorie_service.dart';
-import 'package:odc_pro/widgets/categoryBottomSheet.dart';
 import 'package:odc_pro/widgets/categoryListItem.dart';
 import 'package:odc_pro/widgets/customCircularProgress.dart';
 
@@ -31,20 +31,12 @@ Widget categoryPage(BuildContext context, {required Function setState}) {
               child: Container(
                 width: 50,
                 height: 50,
-                decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    border: Border.all(color: Colors.white, width: 2.0)),
+              
                 child: IconButton(
                     onPressed: () {
-                      Get.defaultDialog(
-                          title: "Ajouter categorie",
-                          titleStyle: TextStyle(color: Colors.white),
-                          backgroundColor: const Color(0xFF33BBC5),
-                          titlePadding: const EdgeInsets.only(top: 8.0),
-                          contentPadding: const EdgeInsets.all(0.0),
-                          content: categoryBottomSheet(typeAction: "add"));
+                     Get.offAll(LoginPage());
                     },
-                    icon: const Icon(Icons.add)),
+                    icon: const Icon(Icons.logout,size: 45,)),
               ),
             ),
           ],

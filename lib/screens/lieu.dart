@@ -1,10 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:odc_pro/screens/pagetest.dart';
+import 'package:odc_pro/screens/login.dart';
 import 'package:odc_pro/services/lieu_service.dart';
 import 'package:odc_pro/widgets/customCircularProgress.dart';
-import 'package:odc_pro/widgets/lieuBottomSheet.dart';
 import 'package:odc_pro/widgets/lieuListItem.dart';
 
 Widget lieuPage(BuildContext context, {required Function setState}) {
@@ -32,16 +31,13 @@ Widget lieuPage(BuildContext context, {required Function setState}) {
                 width: 50,
                 height: 50,
                 decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(50)),
-                    border: Border.all(color: Colors.white, width: 2.0)),
+                    ),
                 child: IconButton(
                     onPressed: () {
-                      Get.to(() => PageTest(
-                            typeAction: "add",
-                          ));
+                      Get.offAll(LoginPage());
                       // Get.bottomSheet(lieuBottomSheet(typeAction: "add", context: context, setState: setState));
                     },
-                    icon: const Icon(Icons.add)),
+                    icon: const Icon(Icons.logout,size: 45,)),
               ),
             ),
           ],
