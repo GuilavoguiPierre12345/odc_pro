@@ -64,11 +64,11 @@ class _FeekBackState extends State<FeekBack>
                     height: 25,
                   ),
                   InputFrom(
-                      titre: 'feekback',
+                      titre: 'feedback',
                       keyBoard: TextInputType.multiline,
-                      hin: 'votre feekback',
+                      hin: 'votre feedback',
                       nom: 'contenu',
-                      error: 'le feekback est obligatoire'),
+                      error: 'le feedback est obligatoire'),
                   const SizedBox(
                     height: 25,
                   ),
@@ -80,7 +80,7 @@ class _FeekBackState extends State<FeekBack>
                     },
                     textStyle: const TextStyle(fontSize: 24),
                     color: const Color(0xFF33BBC5),
-                    text: "Envoyer feekback",
+                    text: "Envoyer feedback",
                     fullWidthButton: true,
                     size: GFSize.LARGE,
                   )
