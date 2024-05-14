@@ -1,7 +1,7 @@
 # PROJET DE FIN DE COURS DE FLUTTER A L'ORANGE DIGITAL CENTER (ODC)
 
 ## Le lien de l'APK de l'application
-[lien de l'application](https://drive.google.com/file/d/1RFeTVUxOEqjM7saLWk0tdeuN40lIWvdy/view?usp=drive_link)
+[lien de l'application](https://drive.google.com/file/d/1SysI_Du_dmKnAlNx4dofJTrzWloGcTSI/view?usp=sharing)
 
 ![ODC image flutter FORMATION](odc_image.jfif "ODC image flutter FORMATION")
 
@@ -17,7 +17,14 @@
 
 # Notre APP porte le nom de : SE-LO APP (SE:SEARCH  et LO: LOCATION)
 ## Le lien de l'APK de l'application
-[lien de l'application](https://drive.google.com/file/d/1RFeTVUxOEqjM7saLWk0tdeuN40lIWvdy/view?usp=drive_link)
+[lien de l'application](https://drive.google.com/file/d/1SysI_Du_dmKnAlNx4dofJTrzWloGcTSI/view?usp=sharing)
+
+### Pour avoir le code source de ce projet :
+1. Telecharger et installer git ensuite dans le terminal tapez :
+```
+ git clone https://github.com/GuilavoguiPierre12345/odc_pro
+```
+2. ou telecharger le fichier zip sur ce depot
 
 
 

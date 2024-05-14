@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:geocoding/geocoding.dart';
@@ -13,8 +14,8 @@ import 'package:odc_pro/widgets/customCircularProgress.dart';
 // ignore: camel_case_types, must_be_immutable
 class Detail_Categorie_detail extends StatefulWidget {
   Detail_Categorie_detail(
-      {super.key, required this.dataAll, required this.categorie});
-  Map<dynamic, dynamic> dataAll;
+      {super.key, required this.lieu, required this.categorie});
+  QueryDocumentSnapshot<Map<String, dynamic>> lieu;
   String categorie;
 
   @override
@@ -143,7 +144,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                     width: 15,
                                   ),
                                   Text(
-                                    widget.dataAll["nomLieu"],
+                                    widget.lieu["nomLieu"],
                                     style: TextStyle(
                                         fontSize: 24, color: Color(0xFF33BBC5)),
                                   ),
@@ -159,7 +160,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                     width: 15,
                                   ),
                                   Text(
-                                    widget.dataAll["ville"],
+                                    widget.lieu["ville"],
                                     style: TextStyle(
                                         fontSize: 24, color: Color(0xFF33BBC5)),
                                   ),
@@ -191,7 +192,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                     width: 15,
                                   ),
                                   Text(
-                                    widget.dataAll["contact1"],
+                                    widget.lieu["contact1"],
                                     style: TextStyle(
                                         fontSize: 24, color: Color(0xFF33BBC5)),
                                   ),
@@ -207,7 +208,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                     width: 15,
                                   ),
                                   Text(
-                                    widget.dataAll["contact2"],
+                                    widget.lieu["contact2"],
                                     style: TextStyle(
                                         fontSize: 24, color: Color(0xFF33BBC5)),
                                   ),
@@ -265,7 +266,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["lhd"],
+                                              widget.lieu["lhd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -278,7 +279,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["lhf"],
+                                              widget.lieu["lhf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -301,7 +302,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["mahd"],
+                                              widget.lieu["mahd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -314,7 +315,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["mahf"],
+                                              widget.lieu["mahf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -337,7 +338,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["merhd"],
+                                              widget.lieu["merhd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -350,7 +351,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["merhf"],
+                                              widget.lieu["merhf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -373,7 +374,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["jhd"],
+                                              widget.lieu["jhd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -386,7 +387,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["jhf"],
+                                              widget.lieu["jhf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -409,7 +410,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["vhd"],
+                                              widget.lieu["vhd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -422,7 +423,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["vhf"],
+                                              widget.lieu["vhf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -445,7 +446,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["shd"],
+                                              widget.lieu["shd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -458,7 +459,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["shf"],
+                                              widget.lieu["shf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -481,7 +482,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["dhd"],
+                                              widget.lieu["dhd"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),
@@ -494,7 +495,7 @@ class _Detail_Categorie_detailState extends State<Detail_Categorie_detail> {
                                               horizontal: 2.0),
                                           child: Center(
                                             child: Text(
-                                              widget.dataAll["dhf"],
+                                              widget.lieu["dhf"],
                                               style: TextStyle(
                                                   fontSize: 24,
                                                   fontWeight: FontWeight.bold),

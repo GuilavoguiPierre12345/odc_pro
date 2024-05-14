@@ -24,7 +24,7 @@ Widget create_categories(
             ),
             GestureDetector(
               onTap: () {
-                Get.to(Categorie_detail(categorie : catObject, lieu: lieu));
+                // Get.to(Categorie_detail(categorie : catObject, lieu: lieu));
               },
               child: const Text(
                 "voir plus...",
@@ -44,7 +44,7 @@ Widget create_categories(
             children: List.generate(3, (index) {
               return GestureDetector(
                 onTap: () {
-                  Get.to(Detail_Categorie_detail(dataAll: lieu,categorie: cat,));
+                  // Get.to(Detail_Categorie_detail(dataAll: lieu,categorie: cat,));
                 },
                 child: Container(
                     alignment: Alignment.bottomLeft,

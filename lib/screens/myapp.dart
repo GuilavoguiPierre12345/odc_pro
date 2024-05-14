@@ -43,29 +43,27 @@ class _MyAppState extends State<MyApp> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child:Scaffold(
-              bottomNavigationBar: BottomNavigationBar(
-                  iconSize: 35,
-                  selectedFontSize: 24,
-                  unselectedFontSize: 22,
-                  unselectedItemColor: const Color(0xFF001B79),
-                  selectedItemColor: const Color(0xFF33BBC5),
-                  currentIndex: currentPage,
-                  onTap: (value) {
-                    setState(() {
-                      currentPage = value;
-                    });
-                  },
-                  items: const [
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.home), label: 'Home'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.feedback), label: 'Feekback'),
-                    BottomNavigationBarItem(
-                        icon: Icon(Icons.person), label: 'Profil'),
-                  ]),
-              body: pageBody(context),
-              // ),
-            ));
+        child: Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+          iconSize: 35,
+          selectedFontSize: 24,
+          unselectedFontSize: 22,
+          unselectedItemColor: const Color(0xFF001B79),
+          selectedItemColor: const Color(0xFF33BBC5),
+          currentIndex: currentPage,
+          onTap: (value) {
+            setState(() {
+              currentPage = value;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.feedback), label: 'Feedback'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+          ]),
+      body: pageBody(context),
+      // ),
+    ));
   }
 }

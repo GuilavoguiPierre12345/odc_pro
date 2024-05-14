@@ -44,4 +44,23 @@ class CategorieService {
       return []; // ou une autre action en cas d'erreur
     }
   }
+
+  Future<List<QueryDocumentSnapshot<Map<String, dynamic>>>>
+      allUniqueCategories() async {
+    List<QueryDocumentSnapshot<Map<String, dynamic>>> queryDocuments = [];
+    try {
+      QuerySnapshot<Map<String, dynamic>> querySnapshot =
+          await FirebaseFirestore.instance.collection("categories").get();
+
+      for (var doc in querySnapshot.docs) {
+        if (!queryDocuments.contains(doc)) {
+          queryDocuments.add(doc);
+        }
+      }
+      return queryDocuments;
+    } catch (e) {
+      print("Error retrieving categories: $e");
+      return []; // ou une autre action en cas d'erreur
+    }
+  }
 }
