@@ -5,7 +5,7 @@
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>  
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
         android:label="SE-LO-APP"
@@ -37,8 +37,8 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-            <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyAnI4fqmzKs94JuzAVK8UHzp8zmJh-y5bU"/>
+            <!-- <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value=""/> -->
     </application>
     <!-- Required to query activities that can process text, see:
          https://developer.android.com/training/package-visibility?hl=en and

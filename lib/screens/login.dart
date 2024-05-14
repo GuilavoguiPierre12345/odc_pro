@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -9,7 +8,6 @@ import 'package:odc_pro/screens/index.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
-
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -47,7 +45,7 @@ class _LoginPageState extends State<LoginPage>
       decoration: const BoxDecoration(
           color: Colors.red,
           image: DecorationImage(
-              image: AssetImage("assets/images/image.jpeg"),
+              image: AssetImage("assets/images/splash-1.jpg"),
               fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent.withOpacity(.6),
@@ -60,7 +58,7 @@ class _LoginPageState extends State<LoginPage>
                 alignment: Alignment.center,
                 child: CircleAvatar(
                   radius: MediaQuery.of(context).size.width / 4,
-                  backgroundImage: const AssetImage("assets/images/user-1.jpg"),
+                  backgroundImage: const AssetImage("assets/images/map.webp"),
                 ),
               ),
               Padding(
@@ -130,9 +128,9 @@ class _LoginPageState extends State<LoginPage>
                             if (_formKey.currentState!.saveAndValidate()) {
                               login = _formKey.currentState!.value;
 
-                            connexion(
-                                contact: login['contact'],
-                                password: login['password']);
+                              connexion(
+                                  contact: login['contact'],
+                                  password: login['password']);
                               // navigation sur la page profil
                               // Get.to(const IndexPage());
                             }
@@ -157,11 +155,10 @@ class _LoginPageState extends State<LoginPage>
 }
 
 Future<void> connexion(
-  
     {required String contact, required String password}) async {
-      // final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
-      // if(connectivityResult.contains(ConnectivityResult.none)){
-              Get.defaultDialog(
+  // final List<ConnectivityResult> connectivityResult = await (Connectivity().checkConnectivity());
+  // if(connectivityResult.contains(ConnectivityResult.none)){
+  Get.defaultDialog(
       title: "Connexion...",
       barrierDismissible: true,
       content: const Center(
@@ -181,14 +178,12 @@ Future<void> connexion(
     Get.snackbar('Authentification', 'Identication incorrect',
         backgroundColor: const Color(0xFF33BBC5),
         colorText: Colors.white,
-        
         duration: const Duration(seconds: 5));
   } else {
     Get.off(const IndexPage());
     print(query.docs);
   }
-      // }else{
-      //   Get.snackbar("Internet error", "INTERNET ERROR");
-      // }
-  
+  // }else{
+  //   Get.snackbar("Internet error", "INTERNET ERROR");
+  // }
 }

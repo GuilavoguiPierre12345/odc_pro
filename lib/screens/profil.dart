@@ -22,7 +22,7 @@ class _ProfilPageState extends State<ProfilPage>
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     QuerySnapshot querySnapshot = await firestore.collection('admin').get();
 
-    
+     
 
     // Parcourir les documents récupérés
     querySnapshot.docs.forEach((DocumentSnapshot document) {

@@ -66,7 +66,8 @@ Widget categoryPage(BuildContext context, {required Function setState}) {
                       return categoryListItem(
                           index: index,
                           updateState: setState,
-                          categorie: categories[index]);
+                          categorie: categories[index]
+                      );
                     }),
                   );
                 }
